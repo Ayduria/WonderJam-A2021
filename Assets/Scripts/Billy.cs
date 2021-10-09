@@ -18,19 +18,21 @@ public class Billy : MonoBehaviour
     float lastTimeGrounded;
     public bool characterRight = true;
     public int maxSpeed = 50 ;
-    //private Animator characterAnimations;
+    private Animator characterAnimations;
+
+    private bool IsDead = false;
 
     //Sons
-    //public AudioSource jump;
-    //public AudioSource walk;
+    public AudioSource jump;
+    public AudioSource walk;
+    public AudioSource takeDamage;
 
-    //public AudioSource takeDamage;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.transform.localScale = new Vector3 (1, 1, 1);
-        //characterAnimations = GetComponent<Animator>();
+        characterAnimations = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(0, 0);
     }
@@ -38,10 +40,15 @@ public class Billy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Move(); 
         Jump();
         CheckIfGrounded();
         BetterJump();
+
+        if(IsDead){
+             rb.velocity = new Vector2(0,  rb.velocity.y);
+        }
 
 
         //Rotate 
@@ -58,6 +65,9 @@ public class Billy : MonoBehaviour
     }
 
     void Move() { 
+        if(IsDead){
+             return;
+        }
         float x = Input.GetAxisRaw("Horizontal"); 
         float moveBy = x * speed;
 
@@ -70,16 +80,17 @@ public class Billy : MonoBehaviour
             characterRight = false;
         }
 
-        
         //Change l'état de l'animation
         if(x == 0){
-            //characterAnimations.SetBool("IsRunning", false);
+            characterAnimations.SetFloat("speed", 0);
             //walk.Pause();
+            
         }
         else{
-            //characterAnimations.SetBool("IsRunning", true);
+            characterAnimations.SetFloat("speed", 1);
             //walk.Play();
         }
+        
     
         rb.velocity = new Vector2(moveBy * Time.fixedDeltaTime, rb.velocity.y); 
 
@@ -90,19 +101,22 @@ public class Billy : MonoBehaviour
     }
 
     void Jump() { 
+        if(IsDead){
+             return;
+        }
         if (Input.GetKeyDown(KeyCode.Space) && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor)) {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            //jump.Play();
+            jump.Play();
         }
 
         if (Input.GetKeyDown(KeyCode.W) && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor)) {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            //jump.Play();
+            jump.Play();
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && (isGrounded || Time.time - lastTimeGrounded <= rememberGroundedFor)) {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            //jump.Play();
+            jump.Play();
         }
     }
     
@@ -110,11 +124,13 @@ public class Billy : MonoBehaviour
             Collider2D colliders = Physics2D.OverlapCircle(isGroundedChecker.position, checkGroundRadius, groundLayer); 
             if (colliders != null) { 
                 isGrounded = true; 
+                characterAnimations.SetBool("IsJumping", false);
             } else { 
                 if (isGrounded) { 
                     lastTimeGrounded = Time.time; 
                 } 
                 isGrounded = false; 
+                characterAnimations.SetBool("IsJumping", true);
             } 
     }
 
@@ -124,5 +140,19 @@ public class Billy : MonoBehaviour
         } else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space) || rb.velocity.y > 0 && !Input.GetKey(KeyCode.W) || rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow)) {
             rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
         }   
+    }
+
+    void Die() {
+        characterAnimations.SetBool("Alive", false);
+        IsDead = true;
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D other){
+   
+        if (other.gameObject.tag == "Obstacle"){
+            Die();
+        }
+  
     }
 }

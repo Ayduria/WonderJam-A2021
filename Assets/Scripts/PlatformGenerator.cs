@@ -23,7 +23,6 @@ public class PlatformGenerator : MonoBehaviour
         if(transform.position.x < generationPoint.position.x){
 
             int prefabIndex = UnityEngine.Random.Range(0,prefabList.Count);
-            Debug.Log(prefabIndex);
             platformWidth = prefabList[prefabIndex].GetComponent<BoxCollider2D>().size.x;
 
             Vector3 platformPosition = transform.position;
