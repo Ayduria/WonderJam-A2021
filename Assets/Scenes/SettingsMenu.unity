@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.03137255, g: 0.3137255, b: 0.34509805, a: 1}
+  m_Color: {r: 0.6415094, g: 0.2208971, b: 0.5246727, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1039,6 +1039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557415536}
   - component: {fileID: 557415537}
+  - component: {fileID: 557415538}
   m_Layer: 5
   m_Name: Volume
   m_TagString: Untagged
@@ -1119,8 +1120,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 882325154}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+      - m_Target: {fileID: 557415538}
+        m_TargetAssemblyTypeName: VolumeControl, Assembly-CSharp
         m_MethodName: SetVolume
         m_Mode: 0
         m_Arguments:
@@ -1131,6 +1132,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &557415538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557415535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e253e737d026e474789ba202ae4edd24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 146260f9e6eff2044ad6198ab76d7b41, type: 2}
+  volumeSlider: {fileID: 557415537}
 --- !u!1 &570802399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,10 +1861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efbc5433b1c7ef4488df03458fe2d51a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 146260f9e6eff2044ad6198ab76d7b41, type: 2}
   resolutionDropdown: {fileID: 1640805403}
   fullScreenToggle: {fileID: 1722631709}
-  volumeSlider: {fileID: 557415537}
 --- !u!1 &905136674
 GameObject:
   m_ObjectHideFlags: 0
