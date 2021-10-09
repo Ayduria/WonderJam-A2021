@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 580736422}
   - component: {fileID: 580736421}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -667,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08248887653e259459184a86688c4d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 146260f9e6eff2044ad6198ab76d7b41, type: 2}
 --- !u!82 &1238472748
 AudioSource:
   m_ObjectHideFlags: 0
