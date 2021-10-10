@@ -9,17 +9,18 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        GameObject.FindGameObjectWithTag("Music").GetComponent<Music>().StopMusic();
         sceneLoader.LoadNextScene();
     }
 
     public void HowToPlay()
     {
-        sceneLoader.LoadIndexScene(4);
+        sceneLoader.LoadIndexScene(5);
     }
 
     public void SettingsMenu()
     {
-        sceneLoader.LoadIndexScene(5);
+        sceneLoader.LoadIndexScene(6);
     }
 
     public void QuitGame()
