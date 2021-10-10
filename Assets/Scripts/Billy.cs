@@ -52,6 +52,9 @@ public class Billy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Time.timeScale == 0){
+                return;
+        }
 
         if(timeIsStopped){
             rb.constraints = UnityEngine.RigidbodyConstraints2D.FreezeAll;
@@ -87,24 +90,24 @@ public class Billy : MonoBehaviour
         if(IsDead){
              rb.velocity = new Vector2(0,  rb.velocity.y);
         }
-
-
-        //Rotate 
-        if(!characterRight){
-            //gameObject.transform.localScale = new Vector3 (-0.5f, 0.5f, 0.5f);
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-            if(characterUp){
-                transform.localRotation = Quaternion.Euler(180, 180, 0);
+     
+            //Rotate 
+            if(!characterRight){
+                //gameObject.transform.localScale = new Vector3 (-0.5f, 0.5f, 0.5f);
+                transform.localRotation = Quaternion.Euler(0, 180, 0);
+                if(characterUp){
+                    transform.localRotation = Quaternion.Euler(180, 180, 0);
+                }
+                
             }
-            
-        }
-        else{
-            //gameObject.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-            if(characterUp){
-                 transform.localRotation = Quaternion.Euler(180, 0, 0);
+            else{
+                //gameObject.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                if(characterUp){
+                    transform.localRotation = Quaternion.Euler(180, 0, 0);
+                }
             }
-        }
+        
     }
 
     void Move() { 
