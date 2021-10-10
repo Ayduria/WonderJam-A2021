@@ -7,6 +7,7 @@ TagManager:
   - Music
   - generationPoint
   - Obstacle
+  - Music2
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ public class DeathScreen : MonoBehaviour
     {
         lastScore.text = "SCORE: " + PlayerPrefs.GetInt("playerScore", 0);
         bestScore.text = "MEILLEUR: " + PlayerPrefs.GetInt("bestScore", 0);
-        lastTime.text = "TIME: " + PlayerPrefs.GetString("playerTime", "00:00:00");
+        lastTime.text = "TEMPS: " + PlayerPrefs.GetString("playerTime", "00:00:00");
     }
 
     // Update is called once per frame

@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 1132470330}
   - component: {fileID: 1132470329}
   m_Layer: 5
-  m_Name: Time
+  m_Name: Temps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -745,7 +745,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'TIME: 00:01:45'
+  m_Text: 'TEMPS: 00:01:45'
 --- !u!222 &1132470330
 CanvasRenderer:
   m_ObjectHideFlags: 0
