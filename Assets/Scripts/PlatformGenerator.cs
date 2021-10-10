@@ -25,9 +25,8 @@ public class PlatformGenerator : MonoBehaviour
             int prefabIndex = UnityEngine.Random.Range(0,prefabList.Count);
             platformWidth = prefabList[prefabIndex].GetComponent<BoxCollider2D>().size.x;
 
-            Vector3 platformPosition = transform.position;
-            platformPosition.x += 0;
-            Instantiate (prefabList[prefabIndex], platformPosition, transform.rotation);
+            Vector3 generationPoint = transform.position;
+            Instantiate (prefabList[prefabIndex], generationPoint, transform.rotation);
             transform.position = new Vector3(transform.position.x + platformWidth + distanceBetween, transform.position.y, transform.position.z);
         }
     }

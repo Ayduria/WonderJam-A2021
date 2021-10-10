@@ -25,6 +25,7 @@ public class Billy : MonoBehaviour
 
     public float DashForce = 15f;
     public float StartDashTimer;
+    private bool DashDirection;
 
     float CurrentDashTimer;
 
@@ -61,6 +62,12 @@ public class Billy : MonoBehaviour
             isDashing = true;
             characterAnimations.SetBool("IsDashing", true);
             CurrentDashTimer = StartDashTimer;
+            if(rb.velocity.x > 0.01){
+                DashDirection = true;
+            }
+            else{
+                DashDirection = false;
+            }
         }
 
 
@@ -125,16 +132,14 @@ public class Billy : MonoBehaviour
             characterAnimations.SetFloat("speed", 1);
             //walk.Play();
         }
-        
-    
-        rb.velocity = new Vector2(moveBy * Time.fixedDeltaTime, rb.velocity.y); 
 
         if(isDashing){
-            if(moveBy > 0.01){
-                rb.velocity = new Vector2(DashForce, rb.velocity.y); 
+            characterAnimations.SetBool("IsDashing", true);
+            if(DashDirection){
+                rb.velocity = new Vector2(DashForce, 0); 
             }
             else{
-               rb.velocity = new Vector2(DashForce * -1, rb.velocity.y); 
+               rb.velocity = new Vector2(DashForce * -1, 0); 
             }
 
             CurrentDashTimer -= Time.deltaTime;
@@ -145,6 +150,7 @@ public class Billy : MonoBehaviour
             }
         }
         else{
+            rb.velocity = new Vector2(moveBy * Time.fixedDeltaTime, rb.velocity.y); 
             if(rb.velocity.magnitude > maxSpeed){
                 rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
             }
