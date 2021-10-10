@@ -1,19 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6870746624231013714
+--- !u!1001 &3316167853787492891
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -432737743022535618, guid: 8db9cb968b0bba74aba7f4c7682fc80e, type: 3}
-      propertyPath: generationPoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4608646265824836076, guid: 8db9cb968b0bba74aba7f4c7682fc80e, type: 3}
       propertyPath: m_Name
-      value: ObstaclesPattern1
+      value: ObstaclesPattern
       objectReference: {fileID: 0}
     - target: {fileID: 4608646265824836078, guid: 8db9cb968b0bba74aba7f4c7682fc80e, type: 3}
       propertyPath: m_RootOrder
@@ -21,15 +17,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4608646265824836078, guid: 8db9cb968b0bba74aba7f4c7682fc80e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.973236
+      value: -3.20045
       objectReference: {fileID: 0}
     - target: {fileID: 4608646265824836078, guid: 8db9cb968b0bba74aba7f4c7682fc80e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 10.46
       objectReference: {fileID: 0}
     - target: {fileID: 4608646265824836078, guid: 8db9cb968b0bba74aba7f4c7682fc80e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3.4532404
       objectReference: {fileID: 0}
     - target: {fileID: 4608646265824836078, guid: 8db9cb968b0bba74aba7f4c7682fc80e, type: 3}
       propertyPath: m_LocalRotation.w
