@@ -28,8 +28,11 @@ public class Billy : MonoBehaviour
     private bool DashDirection;
 
     float CurrentDashTimer;
+    public float DefaultDashCoolDown = 0.75f;
+    float DashCoolDown;
 
     bool isDashing;
+    bool hasUsedDash = false;
 
     //Sons
     public AudioSource jump;
@@ -59,14 +62,18 @@ public class Billy : MonoBehaviour
 
         // Dash Left
         if(Input.GetKeyDown(KeyCode.LeftShift) && !isGrounded && rb.velocity.x != 0){
-            isDashing = true;
-            characterAnimations.SetBool("IsDashing", true);
-            CurrentDashTimer = StartDashTimer;
-            if(rb.velocity.x > 0.01){
-                DashDirection = true;
-            }
-            else{
-                DashDirection = false;
+            if(hasUsedDash == false){
+                isDashing = true;
+                characterAnimations.SetBool("IsDashing", true);
+                CurrentDashTimer = StartDashTimer;
+                DashCoolDown = DefaultDashCoolDown;
+                hasUsedDash = true;
+                if(rb.velocity.x > 0.01){
+                    DashDirection = true;
+                }
+                else{
+                    DashDirection = false;
+                }
             }
         }
 
@@ -133,6 +140,8 @@ public class Billy : MonoBehaviour
             //walk.Play();
         }
 
+        DashCoolDown -= Time.deltaTime;
+
         if(isDashing){
             characterAnimations.SetBool("IsDashing", true);
             if(DashDirection){
@@ -182,6 +191,7 @@ public class Billy : MonoBehaviour
             Collider2D colliders = Physics2D.OverlapCircle(isGroundedChecker.position, checkGroundRadius, groundLayer); 
             if (colliders != null) { 
                 isGrounded = true; 
+                hasUsedDash = false;
                 characterAnimations.SetBool("IsJumping", false);
             } else { 
                 if (isGrounded) { 
@@ -199,6 +209,7 @@ public class Billy : MonoBehaviour
     void Die() {
         characterAnimations.SetBool("Alive", false);
         IsDead = true;
+        takeDamage.Play();
     }
 
     public void toggleTime() {
