@@ -37,7 +37,7 @@ public class Score : MonoBehaviour
         timer.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, (int)miliseconds);
         PlayerPrefs.SetString("playerTime", timer.text);
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.E))
         {
             multiplier = 1;
             score.text = "SCORE: " + scoreValue + " x " + multiplier;
