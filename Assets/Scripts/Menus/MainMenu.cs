@@ -15,12 +15,12 @@ public class MainMenu : MonoBehaviour
 
     public void HowToPlay()
     {
-        sceneLoader.LoadIndexScene(5);
+        sceneLoader.LoadIndexScene(6);
     }
 
     public void SettingsMenu()
     {
-        sceneLoader.LoadIndexScene(6);
+        sceneLoader.LoadIndexScene(7);
     }
 
     public void QuitGame()

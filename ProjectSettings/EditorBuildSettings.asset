@@ -18,8 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Cutscene.unity
     guid: c2de8e81689c2c14f948dbfdeb7523a6
   - enabled: 1
+    path: Assets/Scenes/ScoreTest.unity
+    guid: b5a667bfc99ad4b4ab8433550b72f6a6
+  - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/DeathScore.unity
+    guid: 1fc61066fe432674fa50d526b8e7e2aa
   - enabled: 1
     path: Assets/Scenes/HowToPlay.unity
     guid: dde10b69f796eaa409f11952bbe8dd34
