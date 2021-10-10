@@ -17,10 +17,18 @@ public class Billy : MonoBehaviour
     public float rememberGroundedFor; 
     float lastTimeGrounded;
     public bool characterRight = true;
+    public bool characterUp = false;
     public int maxSpeed = 50 ;
     private Animator characterAnimations;
+    public bool timeIsStopped;
+    public bool IsDead = false;
 
-    private bool IsDead = false;
+    public float DashForce = 15f;
+    public float StartDashTimer;
+
+    float CurrentDashTimer;
+
+    bool isDashing;
 
     //Sons
     public AudioSource jump;
@@ -41,10 +49,26 @@ public class Billy : MonoBehaviour
     void Update()
     {
 
+        if(timeIsStopped){
+            rb.constraints = UnityEngine.RigidbodyConstraints2D.FreezeAll;
+        }
+        else{
+            rb.constraints = UnityEngine.RigidbodyConstraints2D.None;
+        }
+
+        // Dash Left
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !isGrounded && rb.velocity.x != 0){
+            isDashing = true;
+            characterAnimations.SetBool("IsDashing", true);
+            CurrentDashTimer = StartDashTimer;
+        }
+
+
         Move(); 
         Jump();
         CheckIfGrounded();
         BetterJump();
+        
 
         if(IsDead){
              rb.velocity = new Vector2(0,  rb.velocity.y);
@@ -55,12 +79,17 @@ public class Billy : MonoBehaviour
         if(!characterRight){
             //gameObject.transform.localScale = new Vector3 (-0.5f, 0.5f, 0.5f);
             transform.localRotation = Quaternion.Euler(0, 180, 0);
+            if(characterUp){
+                transform.localRotation = Quaternion.Euler(180, 180, 0);
+            }
             
         }
         else{
             //gameObject.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
             transform.localRotation = Quaternion.Euler(0, 0, 0);
-           
+            if(characterUp){
+                 transform.localRotation = Quaternion.Euler(180, 0, 0);
+            }
         }
     }
 
@@ -73,11 +102,17 @@ public class Billy : MonoBehaviour
 
         Vector3 InitialPos = gameObject.transform.localScale;
 
+
+
         if(x == 1){
-            characterRight = true;
+            if(timeIsStopped == false){
+                characterRight = true;
+            }
         }   
         else if(x == -1){
-            characterRight = false;
+            if(timeIsStopped == false){
+                characterRight = false;
+            }
         }
 
         //Change l'état de l'animation
@@ -94,8 +129,25 @@ public class Billy : MonoBehaviour
     
         rb.velocity = new Vector2(moveBy * Time.fixedDeltaTime, rb.velocity.y); 
 
-        if(rb.velocity.magnitude > maxSpeed){
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        if(isDashing){
+            if(moveBy > 0.01){
+                rb.velocity = new Vector2(DashForce, rb.velocity.y); 
+            }
+            else{
+               rb.velocity = new Vector2(DashForce * -1, rb.velocity.y); 
+            }
+
+            CurrentDashTimer -= Time.deltaTime;
+
+            if(CurrentDashTimer <= 0){
+                isDashing = false;
+                characterAnimations.SetBool("IsDashing", false);
+            }
+        }
+        else{
+            if(rb.velocity.magnitude > maxSpeed){
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            }
         }
 
     }
@@ -135,11 +187,7 @@ public class Billy : MonoBehaviour
     }
 
     void BetterJump() {
-        if (rb.velocity.y < 0) {
-            rb.velocity += Vector2.up * Physics2D.gravity * (fallMultiplier - 1) * Time.deltaTime;
-        } else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space) || rb.velocity.y > 0 && !Input.GetKey(KeyCode.W) || rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow)) {
-            rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
-        }   
+        
     }
 
     void Die() {
@@ -147,6 +195,19 @@ public class Billy : MonoBehaviour
         IsDead = true;
     }
 
+    public void toggleTime() {
+        timeIsStopped = !timeIsStopped;
+        GetComponent<Animator>().enabled = !timeIsStopped;
+        
+
+        if(timeIsStopped == false){
+            rb.gravityScale *= -1;
+            characterUp = !characterUp;
+            jumpForce *= -1;
+        }
+    }
+
+    
 
     private void OnCollisionEnter2D(Collision2D other){
    
