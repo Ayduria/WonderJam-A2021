@@ -326,11 +326,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3518061042799010337, guid: b1e3fa42674cea347a0fa6698e461e48, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.39255
+      value: 2.46
       objectReference: {fileID: 0}
     - target: {fileID: 3518061042799010337, guid: b1e3fa42674cea347a0fa6698e461e48, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.7825003
+      value: 5.35
       objectReference: {fileID: 0}
     - target: {fileID: 3518061042799010337, guid: b1e3fa42674cea347a0fa6698e461e48, type: 3}
       propertyPath: m_LocalPosition.z
@@ -378,11 +378,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3518061042799010350, guid: b1e3fa42674cea347a0fa6698e461e48, type: 3}
       propertyPath: DashForce
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3518061042799010350, guid: b1e3fa42674cea347a0fa6698e461e48, type: 3}
       propertyPath: jumpForce
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518061042799010350, guid: b1e3fa42674cea347a0fa6698e461e48, type: 3}
+      propertyPath: StartDashTimer
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3518061042799010350, guid: b1e3fa42674cea347a0fa6698e461e48, type: 3}
       propertyPath: fallMultiplier
@@ -689,7 +693,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generationPoint: {fileID: 1752171259}
   prefabList:
-  - {fileID: 9050166129789786342, guid: eef8199f8b4b64c4580337d330664921, type: 3}
+  - {fileID: 8928274704014344201, guid: a5336020b657fab44b96a7a53a663fd6, type: 3}
+  - {fileID: 3214106584590297209, guid: 9c2d71cd8807cf449b066d8927851419, type: 3}
+  - {fileID: 6630167853523063309, guid: 518765054bd186848a7decfe81c3480c, type: 3}
 --- !u!4 &411460300
 Transform:
   m_ObjectHideFlags: 0
@@ -2513,11 +2519,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5731269662685591089, guid: 3a0d62e12b49cd74bb0462f70ab12630, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.32
+      value: 2.45
       objectReference: {fileID: 0}
     - target: {fileID: 5731269662685591089, guid: 3a0d62e12b49cd74bb0462f70ab12630, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.9
+      value: -3.648
       objectReference: {fileID: 0}
     - target: {fileID: 5731269662685591089, guid: 3a0d62e12b49cd74bb0462f70ab12630, type: 3}
       propertyPath: m_LocalPosition.z
